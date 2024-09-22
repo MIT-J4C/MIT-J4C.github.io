@@ -4,30 +4,31 @@
     <meta charset="UTF-8">
     <title>Redirecting...</title>
     <script type="text/javascript">
-        // Define paths that require special handling
-        var specialMappings = {
-            "/old-path/": "/new-special-path/",
-            "/another-old-path/": "/another-new-path/"
-        };
-
-        var currentPath = window.location.pathname;
         var targetBaseURL = "https://mit-jcl.github.io";
+        var countdownElement = document.getElementById('countdown');
+        var countdownTime = 5; // Countdown time in seconds
 
-        function redirectTo(targetURL) {
-            window.location.href = targetURL + window.location.search + window.location.hash;
+        function updateCountdown() {
+            if (countdownTime > 0) {
+                countdownElement.innerText = "Redirecting in " + countdownTime + " seconds...";
+                countdownTime--;
+            } else {
+                redirectToNewSite();
+            }
         }
 
-        // Check if the current path is in the special mappings
-        if (specialMappings[currentPath]) {
-            // Redirect to a special mapped URL
-            redirectTo(targetBaseURL + specialMappings[currentPath]);
-        } else {
-            // For all other paths, use the default redirection
-            redirectTo(targetBaseURL + currentPath);
+        function redirectToNewSite() {
+            var newURL = targetBaseURL + window.location.pathname + window.location.search + window.location.hash;
+            window.location.href = newURL;
         }
+
+        // Start the countdown
+        setInterval(updateCountdown, 1000);
     </script>
 </head>
 <body>
-    Redirecting...
+    <p id="countdown">Redirecting in 5 seconds...</p>
+    <!-- Optional: Provide a manual link in case the JavaScript fails -->
+    <p>If you are not redirected, <a href="javascript:redirectToNewSite()">click here</a>.</p>
 </body>
 </html>
