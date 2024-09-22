@@ -2,14 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url=https://mit-jcl.github.io{{ page.url }}">
-    <script type="text/javascript">
-        window.location.href = "https://mit-jcl.github.io" + window.location.pathname + window.location.search;
-    </script>
     <title>Redirecting...</title>
+    <script type="text/javascript">
+        // Define paths that require special handling
+        var specialMappings = {
+            "/old-path/": "/new-special-path/",
+            "/another-old-path/": "/another-new-path/"
+        };
+
+        var currentPath = window.location.pathname;
+        var targetBaseURL = "https://mit-jcl.github.io";
+
+        function redirectTo(targetURL) {
+            window.location.href = targetURL + window.location.search + window.location.hash;
+        }
+
+        // Check if the current path is in the special mappings
+        if (specialMappings[currentPath]) {
+            // Redirect to a special mapped URL
+            redirectTo(targetBaseURL + specialMappings[currentPath]);
+        } else {
+            // For all other paths, use the default redirection
+            redirectTo(targetBaseURL + currentPath);
+        }
+    </script>
 </head>
 <body>
-    If you are not redirected, <a href="https://mit-jcl.github.io{{ page.url }}">click here</a>.
+    Redirecting...
 </body>
 </html>
-
