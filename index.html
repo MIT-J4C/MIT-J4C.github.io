@@ -5,16 +5,28 @@
     <title>Redirecting...</title>
     <script type="text/javascript">
         var targetBaseURL = "https://mit-jcl.github.io";
-
-        // Construct the full new URL by appending the existing path and query
+        var countdownDuration = 4; // Countdown duration in seconds
         var newURL = targetBaseURL + window.location.pathname + window.location.search + window.location.hash;
 
-        // Redirect to the new URL
-        window.location.href = newURL;
+        function startCountdown(seconds) {
+            var counter = seconds;
+            var interval = setInterval(function() {
+                document.getElementById('countdown').innerText = 'Redirecting in ' + counter + ' seconds...';
+                counter--;
+                if (counter < 0) {
+                    clearInterval(interval);
+                    window.location.href = newURL; // Redirect to the new URL
+                }
+            }, 1000);
+        }
+
+        window.onload = function() {
+            startCountdown(countdownDuration);
+        };
     </script>
 </head>
 <body>
-    <p>Redirecting...</p>
+    <p id="countdown">Redirecting in 5 seconds...</p>
     <!-- Optional: Provide a manual link in case the JavaScript fails -->
     <p>If you are not redirected, <a href="javascript:window.location.href=newURL">click here</a>.</p>
 </body>
