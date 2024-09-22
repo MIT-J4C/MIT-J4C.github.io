@@ -11,7 +11,7 @@
         function startCountdown(seconds) {
             var counter = seconds;
             var interval = setInterval(function() {
-                document.getElementById('countdown').innerText = 'Redirecting in ' + counter + ' seconds...';
+                document.getElementById('countdown').innerText = 'Redirecting to our new site in ' + counter + ' seconds...';
                 counter--;
                 if (counter < 0) {
                     clearInterval(interval);
@@ -26,7 +26,8 @@
     </script>
 </head>
 <body>
-    <p id="countdown">Redirecting in 5 seconds...</p>
+    <p>J4C is now Jews for Collective Liberation!</p>
+    <p id="countdown">Redirecting to our new site in 5 seconds...</p>
     <!-- Optional: Provide a manual link in case the JavaScript fails -->
     <p>If you are not redirected, <a href="javascript:window.location.href=newURL">click here</a>.</p>
 </body>
